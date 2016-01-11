@@ -1,8 +1,9 @@
 require_relative 'piece'
 
 class Board
+  attr_reader :grid
 
-  def initialize
+  def initialize()
     @grid = Array.new(8) {Array.new(8) {NullPiece.new()}}
   end
 
@@ -21,6 +22,11 @@ class Board
   def valid_move?(start, end_pos)
     piece = @grid[start]
     piece.valid_move?(end_pos)
+  end
+
+  #write later
+  def in_bounds?(pos)
+    (pos.max < @grid.length) && (pos.min >= 0)
   end
 
   def [](pos)

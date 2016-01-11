@@ -7,5 +7,13 @@ class NullPiece
     false
   end
 
+  def to_s
+    return "    "
+  end
+
+  def moves
+    puts "I'm a null piece you dum dum"
+  end
+  
 
 end
