@@ -9,7 +9,11 @@ class Bishop < Piece
   end
 
   def to_s
-    @color == :black ? "\u265D" : "\u2657"
+    @color == :black ? " \u265D  " : " \u2657  "
+  end
+
+  def generate_moves
+    diag_slide(@pos)
   end
 
 end

@@ -1,0 +1,16 @@
+Stepping Pieces
+  knight
+  king
+
+Pawns
+
+Game loop
+
+
+
+<< Final Stages : Get a playing game going before doing these stages>>
+in_check
+
+checkmate
+
+[in_check valid moves]

@@ -9,7 +9,11 @@ class Queen < Piece
   end
 
   def to_s
-    @color == :black ? "\u265B" : "\u2655"
+    @color == :black ? " \u265B  " : " \u2655  "
+  end
+
+  def generate_moves
+    perp_slide(@pos) + diag_slide(@pos)
   end
 
 end

@@ -1,3 +1,5 @@
+require_relative 'piece'
+
 class NullPiece < Piece
 
   def initialize(board, color=nil, pos=nil)
@@ -13,7 +15,7 @@ class NullPiece < Piece
   end
 
   def to_s
-    "    "
+    "     "
   end
 
   def moves

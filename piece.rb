@@ -1,5 +1,8 @@
 class Piece
 
+  #refactor
+  attr_reader :color, :pos, :board
+
   def initialize(board, color=nil, pos=nil)
     @board = board
     @color = color
