@@ -12,9 +12,12 @@ class Piece
 
   #opposite
   def opposite_color
+    unless @color.nil?
+      @color == :black ? :white : :black
+    end
   end
 
-  def valid_move(end_pos)
+  def valid_move?(end_pos)
     piece = @board[end_pos]
     if self.color == piece.color
       false
