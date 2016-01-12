@@ -6,7 +6,7 @@ module Stepping
     step(start_pos, KING_MOVES)
   end
 
-  def knight_step
+  def knight_step(start_pos)
     step(start_pos, KNIGHT_MOVES)
   end
 
@@ -21,5 +21,5 @@ module Stepping
 
   def step_valid_move?(pos)
     @board.in_bounds?(pos) && valid_move?(pos)
-  end        
+  end
 end

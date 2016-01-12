@@ -4,7 +4,7 @@ require_relative "piece"
 class Queen < Piece
   include Sliding
 
-  def def initialize(board, color, pos)
+  def initialize(board, color, pos)
     super(board, color, pos)
   end
 
