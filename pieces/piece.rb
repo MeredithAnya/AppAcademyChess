@@ -34,6 +34,13 @@ class Piece
     end
   end
 
+  def generate_moves
+  end
+
+  def valid_moves
+    
+  end
+
 end
 
 

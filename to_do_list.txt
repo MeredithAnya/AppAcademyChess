@@ -1,19 +1,13 @@
-Stepping Pieces
-  knight
-  king
-
-Pawns
-
-Game loop
 
 
-
-<< Final Stages : Get a playing game going before doing these stages>>
 in_check
 
 checkmate
 
-[in_check valid moves]
+Game loop
+move end_pos is not being saved
+
+in_check? maybe switch valid moves to generate moves
 
 
-refactor opposite color to have a question mark
+<< Final Stages : Get a playing game going before doing these stages>>

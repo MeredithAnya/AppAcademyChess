@@ -4,7 +4,7 @@ require_relative 'board'
 
 class Display
   include Cursorable
-  attr_accessor :board, :game, :cursor_pos
+  attr_accessor :board, :game, :cursor_pos, :selected
 
   def initialize(board)
     @board = board
@@ -30,8 +30,10 @@ class Display
   end
 
   def colors_for(i,j)
+    
     piece = board[[i,j]]
     color = piece.color
+
     moves = board[@cursor_pos].generate_moves
     #p moves
 

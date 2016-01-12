@@ -5,6 +5,9 @@ class Board
 
   def initialize()
     @grid = Array.new(8) {Array.new(8) {NullPiece.new(self)}}
+    @white_pieces = []
+    @black_pieces = []
+    populate
   end
 
   def populate
@@ -12,11 +15,45 @@ class Board
     populate_pawn
   end
 
+  def in_check?(color)
+
+    grid.each do |row|
+      row.each do |piece|
+        if (piece.is_a?(King)) && (piece.color == color)
+          king_to_check = piece
+        end
+      end
+    end
+
+    grid.each do |row|
+      row.each do |piece|
+        if piece.color == king_to_check.opposite_color
+          #maybe switch to generate moves
+          moves = piece.generate_moves
+          return true if moves.include(king_to_check.pos)
+        end
+      end
+    end
+
+    false
+  end
+
+  # def checkmate?
+  #
+  # end
+
   def move(start, end_pos)
     piece_to_move = grid[start[0]][start[1]]
-    if piece_to_move.empty? || in_bounds?(end_pos)
+
+    if piece_to_move.empty? || !(in_bounds?(end_pos))
       raise ArgumentError
     end
+
+    # unless piece.valid_move?(end_pos)
+    #   raise ArgumentError
+    # end
+
+
     move!(start, end_pos)
   end
 
@@ -25,6 +62,7 @@ class Board
     piece_to_move = grid[start[0]][start[1]]
     grid[end_pos[0]][end_pos[1]] = piece_to_move
     piece_to_move.pos = end_pos
+    piece_to_move.first_move = false
 
     grid[start[0]][start[1]] = NullPiece.new(self)
 
@@ -47,6 +85,7 @@ class Board
 
   private
 
+  #populating the board!
   def pieces_array
     strong_array = Array.new(8)
 
@@ -68,6 +107,7 @@ class Board
         piece.pos = [row,ind]
         grid[row][ind] = piece
         piece.color = colorize_piece(row)
+        fill_piece_array(piece)
       end
     end
   end
@@ -79,6 +119,7 @@ class Board
         piece = Pawn.new(self, nil, [row,ind])
         grid[row][ind] = piece
         piece.color = colorize_piece(row)
+        fill_piece_array(piece)
       end
     end
   end
@@ -86,6 +127,15 @@ class Board
   def colorize_piece(row)
     return :white if ((row == 0) || (row == 1))
     return :black
+  end
+
+  def fill_piece_array(piece)
+    case piece.color
+    when :black
+      @black_pieces << piece
+    when :white
+      @white_pieces << piece
+    end
   end
 
 end

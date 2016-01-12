@@ -12,7 +12,8 @@ class Pawn < Piece
   end
 
   def generate_moves
-    gen_forward_moves + diag_capture_check
+    p diag_capture_check
+    (gen_forward_moves + diag_capture_check)
   end
 
   def gen_forward_moves
@@ -37,28 +38,28 @@ class Pawn < Piece
   end
 
   def diag_capture_check
-    #if white 1,1 1,-1git
-    #if black -1,-1 -1,1
+
     results = []
     diff_array = [[1,1],[1,-1]]
     diff_array.each do |diff|
       case color
       when :black
         test_pos = [pos[0]-diff[0],pos[1]-diff[1]]
-        results << test_pos if valid_move?(pos, true)
+        results << test_pos if valid_move?(test_pos, true)
       when :white
         test_pos = [pos[0]+diff[0],pos[1]+diff[1]]
-        results << test_pos if valid_move?(pos, true)
+        results << test_pos if valid_move?(test_pos, true)
       end
     end
     results
   end
 
-  def valid_move?(pos,diag_move)
+  def valid_move?(test_pos,diag_move)
     if diag_move
-      (board[pos].color == opposite_color) && board.in_bounds?(pos)
+      piece = board[test_pos]
+      (piece.color == opposite_color) && board.in_bounds?(test_pos)
     else
-      board[pos].empty? && board.in_bounds?(pos)
+      board[test_pos].empty? && board.in_bounds?(test_pos)
     end
   end
 end
