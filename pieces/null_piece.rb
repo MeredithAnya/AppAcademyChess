@@ -14,8 +14,12 @@ class NullPiece < Piece
     false
   end
 
+  def generate_moves
+    []
+  end
+
   def to_s
-    "     "
+    "    "
   end
 
   def moves

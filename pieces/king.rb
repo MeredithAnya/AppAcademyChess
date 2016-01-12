@@ -1,20 +1,17 @@
-require_relative 'sliding'
 require_relative 'piece'
+require_relative '../stepping'
 
-class Rook < Piece
-  include Sliding
-
+class King < Piece
+  include Stepping
   def initialize(board, color, pos)
     super(board, color, pos)
   end
 
   def to_s
-    @color == :black ? " \u265C  " : " \u2656  "
+    color == :black ? " \u265A  " : " \u2654  "
   end
 
   def generate_moves
-    perp_slide(@pos)
+    king_step(pos)
   end
-
-
 end

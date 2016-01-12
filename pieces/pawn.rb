@@ -8,7 +8,7 @@ class Pawn < Piece
   end
 
   def to_s
-    color == :black ? " \u265F  " : " \u2659  "
+    " \u265F  "
   end
 
   def generate_moves
@@ -19,13 +19,13 @@ class Pawn < Piece
     results = []
     diff_array = [[1,0], [2,0]]
 
-    unless first_move?
+    unless first_move
       diff_array = diff_array.reject {|diff| diff.max > 1}
     end
 
     diff_array.each do |diff|
       if color == :black
-        test_pos = [pos[0]-diff[0], pos[1]-diff[1]]]
+        test_pos = [pos[0]-diff[0], pos[1]-diff[1]]
       else
         test_pos = [pos[0]+diff[0], pos[1]+diff[1]]
       end
@@ -37,7 +37,7 @@ class Pawn < Piece
   end
 
   def diag_capture_check
-    #if white 1,1 1,-1
+    #if white 1,1 1,-1git
     #if black -1,-1 -1,1
     results = []
     diff_array = [[1,1],[1,-1]]

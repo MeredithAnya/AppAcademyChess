@@ -1,4 +1,4 @@
-require_relative "sliding"
+require_relative "../sliding"
 require_relative "piece"
 
 class Queen < Piece

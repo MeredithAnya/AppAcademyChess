@@ -30,14 +30,25 @@ class Display
   end
 
   def colors_for(i,j)
+    piece = board[[i,j]]
+    color = piece.color
+    moves = board[@cursor_pos].generate_moves
+    #p moves
+
     if [i,j] == @cursor_pos
-      bg = :light_red
+      bg = :light_magenta
     elsif (i+j).odd?
-      bg = :light_black
+      bg = :light_blue
     else
-      bg = :black
+      bg = :light_green
     end
-    {background: bg, color: :white}
+
+    if moves.include?([i,j])
+      bg = :light_yellow
+    end
+
+
+    {background: bg, color: color}
   end
 
   def render

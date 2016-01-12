@@ -1,19 +1,19 @@
 require_relative 'piece'
-require_relative 'sliding'
+require_relative '../stepping'
 
-class Bishop < Piece
-  include Sliding
+class Knight < Piece
+  include Stepping
 
   def initialize(board, color, pos)
     super(board, color, pos)
   end
 
   def to_s
-    @color == :black ? " \u265D  " : " \u2657  "
+    color == :black ? " \u265E  " : " \u2658  "
   end
 
   def generate_moves
-    diag_slide(@pos)
+    knight_step(pos)
   end
 
 end
