@@ -6,7 +6,7 @@ class Display
   include Cursorable
   attr_accessor :board, :game, :cursor_pos
 
-  def initialize(board=nil)
+  def initialize(board)
     @board = board
     @game = nil
     @cursor_pos = [0,0]
