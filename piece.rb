@@ -1,19 +1,31 @@
-class NullPiece
-  def initialize(pos = nil)
+class Piece
+
+  def initialize(board, color=nil, pos=nil)
+    @board = board
+    @color = color
     @pos = pos
   end
 
-  def valid_move?(end_pos)
+  def empty?
     false
   end
 
-  def to_s
-    return "    "
+  #opposite
+  def opposite_color
   end
 
-  def moves
-    puts "I'm a null piece you dum dum"
+  def valid_move(end_pos)
+    piece = @board[end_pos]
+    if self.color == piece.color
+      false
+    elsif piece.empty?
+      true
+    elsif self.color != piece.color
+      true
+    end
   end
-  
 
 end
+
+
+#hit other team
