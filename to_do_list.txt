@@ -14,3 +14,6 @@ in_check
 checkmate
 
 [in_check valid moves]
+
+
+refactor opposite color to have a question mark

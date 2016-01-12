@@ -2,18 +2,21 @@ class Piece
 
   #refactor
   attr_reader :color, :pos, :board
+  attr_accessor :first_move
 
   def initialize(board, color=nil, pos=nil)
     @board = board
     @color = color
     @pos = pos
+    #maybe change?
+    @first_move = false
   end
 
   def empty?
     false
   end
 
-  #opposite
+  #opposite color make a question mark 
   def opposite_color
     unless @color.nil?
       @color == :black ? :white : :black
