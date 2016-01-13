@@ -30,11 +30,11 @@ class Display
   end
 
   def colors_for(i,j)
-    
+
     piece = board[[i,j]]
     color = piece.color
 
-    moves = board[@cursor_pos].generate_moves
+    moves = board[@cursor_pos].valid_moves
     #p moves
 
     if [i,j] == @cursor_pos

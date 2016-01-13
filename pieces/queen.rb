@@ -18,7 +18,7 @@ class Queen < Piece
 
   def deep_dup(duped_board)
     pos_dup = pos.dup
-    Queen.new(duped_board, color, pos_dup)
+    self.class.new(duped_board, color, pos_dup)
   end
 
 end

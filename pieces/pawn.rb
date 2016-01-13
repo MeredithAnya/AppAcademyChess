@@ -17,7 +17,6 @@ class Pawn < Piece
   end
 
   def generate_moves
-    p diag_capture_check
     (gen_forward_moves + diag_capture_check)
   end
 
@@ -61,8 +60,10 @@ class Pawn < Piece
 
   def valid_move?(test_pos,diag_move)
     if diag_move
-      piece = board[test_pos]
-      (piece.color == opposite_color) && board.in_bounds?(test_pos)
+      if board.in_bounds?(test_pos)
+        piece = board[test_pos]
+        (piece.color == opposite_color)
+      end
     else
       board[test_pos].empty? && board.in_bounds?(test_pos)
     end

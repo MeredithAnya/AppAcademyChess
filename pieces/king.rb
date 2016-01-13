@@ -5,6 +5,7 @@ class King < Piece
   include Stepping
   def initialize(board, color, pos)
     super(board, color, pos)
+    @king = true
   end
 
   def to_s
@@ -19,4 +20,7 @@ class King < Piece
     pos_dup = pos.dup
     King.new(duped_board, color, pos_dup)
   end
+
+
+
 end

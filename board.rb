@@ -13,22 +13,38 @@ class Board
     populate_pawn
   end
 
-  def in_check?(color)
-
+  def get_king(color)
+    # king_to_check = nil
     grid.each do |row|
       row.each do |piece|
-        if (piece.is_a?(King)) && (piece.color == color)
-          king_to_check = piece
+        # puts piece.king
+        # puts piece.color
+        # puts color
+        # puts "---------------------------"
+        if (piece.king) && (piece.color == color)
+          # puts "hit"
+          # puts piece
+          return piece
         end
       end
     end
+    puts color
+    p @grid
+    raise "Whatt"
+  end
+
+  def in_check?(color)
+
+    king_to_check = get_king(color)
 
     grid.each do |row|
       row.each do |piece|
         if piece.color == king_to_check.opposite_color
-          #maybe switch to generate moves
           moves = piece.generate_moves
-          return true if moves.include(king_to_check.pos)
+          if moves.include?(king_to_check.pos)
+            puts "Hey im in check"
+            return true
+          end
         end
       end
     end
@@ -41,15 +57,18 @@ class Board
     if in_check?(color)
       grid.each do |row|
         row.each do |piece|
-          result += piece.valid_moves
+          if piece.color == piece.opposite_color
+            result += piece.valid_moves
+          end
+          if result.length > 0
+            return false
+          end
         end
       end
+      result.length == 0
     end
-    result.length == 0
+
   end
-  # def checkmate?
-  #
-  # end
 
   def move(start, end_pos)
     piece_to_move = grid[start[0]][start[1]]
@@ -58,7 +77,7 @@ class Board
       raise ArgumentError
     end
 
-    unless piece.valid_moves.include?(end_pos)
+    unless piece_to_move.valid_moves.include?(end_pos)
       raise ArgumentError
     end
 
