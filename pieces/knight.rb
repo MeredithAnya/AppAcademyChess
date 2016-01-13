@@ -16,4 +16,8 @@ class Knight < Piece
     knight_step(pos)
   end
 
+  def deep_dup(duped_board)
+    pos_dup = pos.dup
+    Knight.new(duped_board, color, pos_dup)
+  end
 end

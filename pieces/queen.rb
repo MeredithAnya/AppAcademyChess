@@ -16,4 +16,9 @@ class Queen < Piece
     perp_slide(@pos) + diag_slide(@pos)
   end
 
+  def deep_dup(duped_board)
+    pos_dup = pos.dup
+    Queen.new(duped_board, color, pos_dup)
+  end
+
 end

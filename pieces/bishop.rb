@@ -16,4 +16,9 @@ class Bishop < Piece
     diag_slide(@pos)
   end
 
+  def deep_dup(duped_board)
+    pos_dup = pos.dup
+    Bishop.new(duped_board, color, pos_dup)
+  end
+
 end

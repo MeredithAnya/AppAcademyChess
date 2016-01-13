@@ -11,6 +11,11 @@ class Pawn < Piece
     " \u265F  "
   end
 
+  def deep_dup(duped_board)
+    pos_dup = pos.dup
+    Pawn.new(duped_board, color, pos_dup)
+  end
+
   def generate_moves
     p diag_capture_check
     (gen_forward_moves + diag_capture_check)

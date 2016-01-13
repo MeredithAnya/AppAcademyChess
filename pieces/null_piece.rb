@@ -26,4 +26,8 @@ class NullPiece < Piece
     puts "I'm a null piece you dum dum"
   end
 
+  def deep_dup(duped_board)
+    NullPiece.new(duped_board)
+  end
+
 end

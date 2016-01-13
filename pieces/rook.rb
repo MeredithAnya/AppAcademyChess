@@ -16,5 +16,9 @@ class Rook < Piece
     perp_slide(@pos)
   end
 
-
+  def deep_dup(duped_board)
+    pos_dup = pos.dup
+    Rook.new(duped_board, color, pos_dup)
+  end
+  
 end

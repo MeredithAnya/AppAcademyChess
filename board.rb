@@ -3,11 +3,9 @@ require_relative 'pieces'
 class Board
   attr_reader :grid
 
-  def initialize()
+  def initialize(should_populate = true)
     @grid = Array.new(8) {Array.new(8) {NullPiece.new(self)}}
-    @white_pieces = []
-    @black_pieces = []
-    populate
+    populate if should_populate
   end
 
   def populate
@@ -38,6 +36,17 @@ class Board
     false
   end
 
+  def checkmate?(color)
+    result = []
+    if in_check?(color)
+      grid.each do |row|
+        row.each do |piece|
+          result += piece.valid_moves
+        end
+      end
+    end
+    result.length == 0
+  end
   # def checkmate?
   #
   # end
@@ -49,10 +58,9 @@ class Board
       raise ArgumentError
     end
 
-    # unless piece.valid_move?(end_pos)
-    #   raise ArgumentError
-    # end
-
+    unless piece.valid_moves.include?(end_pos)
+      raise ArgumentError
+    end
 
     move!(start, end_pos)
   end
@@ -70,6 +78,17 @@ class Board
 
   def in_bounds?(pos)
     (pos.max < grid.length) && (pos.min >= 0)
+  end
+
+  def deep_dup
+    duped_board = Board.new(false)
+    grid.each_with_index do |row, i|
+      row.each_with_index do |piece, j|
+        duped_piece = piece.deep_dup(duped_board)
+        duped_board.grid[i][j] = duped_piece
+      end
+    end
+    duped_board
   end
 
   #syntactic sugar
@@ -107,7 +126,7 @@ class Board
         piece.pos = [row,ind]
         grid[row][ind] = piece
         piece.color = colorize_piece(row)
-        fill_piece_array(piece)
+
       end
     end
   end
@@ -119,7 +138,7 @@ class Board
         piece = Pawn.new(self, nil, [row,ind])
         grid[row][ind] = piece
         piece.color = colorize_piece(row)
-        fill_piece_array(piece)
+
       end
     end
   end
@@ -129,13 +148,5 @@ class Board
     return :black
   end
 
-  def fill_piece_array(piece)
-    case piece.color
-    when :black
-      @black_pieces << piece
-    when :white
-      @white_pieces << piece
-    end
-  end
 
 end
