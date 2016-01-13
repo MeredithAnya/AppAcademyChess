@@ -37,10 +37,10 @@ class Game
     until start_user_input
       @display.render
       start_user_input = @display.get_input
+
     end
-
-    @display.selected = true
-
+    raise ArgumentError if @board[start_user_input].color != player.color
+    
     until end_user_input
       @display.render
       end_user_input = @display.get_input

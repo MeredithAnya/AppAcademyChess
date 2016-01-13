@@ -46,7 +46,6 @@ class Piece
       duped_board.move!(pos, move)
       results << move unless duped_board.in_check?(color)
     end
-    p results
   end
 
 end
