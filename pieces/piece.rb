@@ -4,7 +4,7 @@ class Piece
   attr_reader :board
   attr_accessor :first_move, :pos, :color, :king
 
-  def initialize(board, color=nil, pos=nil)
+  def initialize(board, color, pos)
     @board = board
     @color = color
     @pos = pos
