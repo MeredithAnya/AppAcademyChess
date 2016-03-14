@@ -47,8 +47,8 @@ class Game
     end
 
     @board.move(start_user_input, end_user_input)
-  rescue ArgumentError
-    puts "You fucked up!"
+    rescue ArgumentError
+    puts "Not your color to move"
     retry
   end
     @display.selected = false
@@ -57,8 +57,8 @@ class Game
 
 end
 
-p1 = Player.new(:black)
-p2 = Player.new(:white)
+p1 = Player.new(:white)
+p2 = Player.new(:black)
 
 game = Game.new(p1, p2)
 game.play
