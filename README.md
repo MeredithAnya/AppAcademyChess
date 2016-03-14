@@ -11,7 +11,7 @@
   
   
   
-  [screenshot]: ./ScreenShot
+  [screenshot]: ./ScreenShot.png
 
 
 
